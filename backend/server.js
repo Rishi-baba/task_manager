@@ -11,7 +11,13 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://task-manager-mhkm.vercel.app"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -20,7 +26,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/tasks", taskRoutes);
-app.use("/tasks", taskRoutes); // Alias in case /api is omitted
+app.use("/tasks", taskRoutes); 
 
 app.use(errorHandler);
 
