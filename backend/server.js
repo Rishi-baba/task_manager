@@ -20,6 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/tasks", taskRoutes);
+app.use("/tasks", taskRoutes); // Alias in case /api is omitted
 
 app.use(errorHandler);
 
