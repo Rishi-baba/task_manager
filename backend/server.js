@@ -13,7 +13,9 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://task-manager-mhkm.vercel.app"],
+    origin: process.env.FRONTEND_URL 
+      ? process.env.FRONTEND_URL.split(',').map(url => url.trim())
+      : ["http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
